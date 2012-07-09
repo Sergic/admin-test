@@ -10,17 +10,13 @@
 			<h2>{{ title }}</h2>
 		</header>
 
-		<form action="#" class="user-search">
+
+	    <form action="{{ path('admin_management_user_edit') }}" class="well" method="post" {{ form_enctype(findForm) }} class="user-search">
 			<fieldset>
-				<dl>
-					<dt><label for="search_id">Введите id пользователя</label></dt>
-					<dd><input type="text" class="span2" id="search_id"></dd>
-					<dt><label for="email">Введите email</label></dt>
-					<dd><input type="text" class="span2" id="email"></dd>
-				</dl>
-				<button class="btn btn-success">найти</button>
-			</fieldset>
-		</form>
+	        {{ form_widget(findForm) }}
+            <button class="btn btn-success" type="submit">найти</button>
+		    </fieldset>
+	    </form>
 
 		{% if userForm is defined %}
 

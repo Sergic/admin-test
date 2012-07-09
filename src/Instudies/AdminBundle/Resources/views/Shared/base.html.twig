@@ -20,8 +20,8 @@
 		<div class="navbar-inner">
 			<div class="container">
 				<ul class="nav">
-					<li class="active"><a href="#">Статистика</a></li>
-					<li><a href="#">Управление</a></li>
+					<li><a href="#">Статистика</a></li>
+					<li class="active"><a href="#">Управление</a></li>
 				</ul>
 				<a class="brand" href="">instudies</a>
 			</div>
@@ -29,14 +29,16 @@
 	</div>
 
 	<div class="subnav subnav-fixed">
-		<ul class="nav nav-pills statistics">
-			<li><a href="#">Активность пользователей</a></li>
-			<li><a href="#">Активность групп</a></li>
-			<li><a href="#">Активные пользователи</a></li>
-			<li><a href="#">Счетчики</a></li>
-		</ul>
+		{#
+			<ul class="nav nav-pills statistics">
+				<li><a href="#">Активность пользователей</a></li>
+				<li><a href="#">Активность групп</a></li>
+				<li><a href="#">Активные пользователи</a></li>
+				<li><a href="#">Счетчики</a></li>
+			</ul>
+		#}
 		<ul class="nav nav-pills admin">
-			<!--<li><a href="#">Удаление пользователей</a></li>-->
+			<li class="active"><a href="{{ path('admin_management_user') }}">Удаление пользователями</a></li>
 		</ul>
 	</div>
 

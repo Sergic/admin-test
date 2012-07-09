@@ -1,7 +1,7 @@
 InstudiesAdminBundle:
     resource: "@InstudiesAdminBundle/Controller/"
     type:     annotation
-    prefix:   /admin/
+    prefix:   /
 
 # Internal routing configuration to handle ESI
 #_internal:

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ru" class="main">
+<head>
+	<meta charset="utf-8">
+	<title>Админка instudies</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="./js/bootstrap.js"></script>
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<ul class="nav">
+				<li class="active"><a href="#">Статистика</a></li>
+				<li><a href="#">Управление</a></li>
+			</ul>
+			<a class="brand" href="">instudies</a>
+		</div>
+	</div>
+</div>
+<div class="subnav subnav-fixed">
+	<ul class="nav nav-pills statistics">
+		<li><a href="#">Активность пользователей</a></li>
+		<li><a href="#">Активность групп</a></li>
+		<li><a href="#">Активные пользователи</a></li>
+		<li><a href="#">Счетчики</a></li>
+	</ul>
+	<ul class="nav nav-pills admin">
+		<!--<li><a href="#">Удаление пользователей</a></li>-->
+	</ul>
+</div>
+<div class="container">
+	<form action="#" style="display: none;" id="users-activity">
+		<fieldset>
+			<header class="page-header clearfix">
+				<h2>Активность пользователей</h2>
+				<dl class="filter">
+					<dt>Выводить по:</dt>
+					<dd>
+						<select class="span1">
+							<option>20</option>
+							<option>50</option>
+							<option>100</option>
+						</select>
+					</dd>
+				</dl>
+			</header>
+			<table class="table table-bordered table-striped statistics">
+				<thead>
+					<tr>
+						<th>Имя пользователя</th>
+						<th><label class="checkbox"><input type="checkbox"> ДЗ</label></th>
+						<th><label class="checkbox"><input type="checkbox"> Конспекты</label></th>
+						<th><label class="checkbox"><input type="checkbox"> События</label></th>
+						<th><label class="checkbox"><input type="checkbox"> Записи в блоге</label></th>
+						<th><label class="checkbox"><input type="checkbox"> Комментарии</label></th>
+						<th><label class="checkbox"><input type="checkbox"> Личка</label></th>
+						<th><label class="checkbox"><input type="checkbox"> Избранное</label></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><a href="#">Василий пупкин</a></td>
+						<td>12</td>
+						<td>34</td>
+						<td>546</td>
+						<td>45747</td>
+						<td>456</td>
+						<td>474388</td>
+						<td>23</td>
+					</tr>
+					<tr>
+						<td><a href="#">Василий пупкин</a></td>
+						<td>12</td>
+						<td>34</td>
+						<td>546</td>
+						<td>45747</td>
+						<td>456</td>
+						<td>474388</td>
+						<td>23</td>
+					</tr>
+					<tr>
+						<td><a href="#">Василий пупкин</a></td>
+						<td>12</td>
+						<td>34</td>
+						<td>546</td>
+						<td>45747</td>
+						<td>456</td>
+						<td>474388</td>
+						<td>23</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="pagination">
+				<ul>
+					<li class="disabled"><a href="#">«</a></li>
+					<li class="active"><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">»</a></li>
+				</ul>
+			</div>
+		</fieldset>
+	</form>
+	<form action="#" style="display: none;" id="groups-activity">
+		<fieldset>
+			<header class="page-header clearfix">
+				<h2>Активность групп</h2>
+				<dl class="filter">
+					<dt>Выводить по:</dt>
+					<dd>
+						<select class="span1">
+							<option>20</option>
+							<option>50</option>
+							<option>100</option>
+						</select>
+					</dd>
+				</dl>
+			</header>
+			<table class="table table-bordered table-striped statistics">
+				<thead>
+					<tr>
+						<th>Название группы</th>
+						<th><label class="checkbox"><input type="checkbox"> ДЗ</label></th>
+						<th><label class="checkbox"><input type="checkbox"> Конспекты</label></th>
+						<th><label class="checkbox"><input type="checkbox"> События</label></th>
+						<th><label class="checkbox"><input type="checkbox"> Записи в блоге</label></th>
+						<th><label class="checkbox"><input type="checkbox"> Комментарии</label></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><a href="#">Василий пупкин</a></td>
+						<td>12</td>
+						<td>34</td>
+						<td>546</td>
+						<td>45747</td>
+						<td>456</td>
+					</tr>
+					<tr>
+						<td><a href="#">Василий пупкин</a></td>
+						<td>12</td>
+						<td>34</td>
+						<td>546</td>
+						<td>45747</td>
+						<td>456</td>
+					</tr>
+					<tr>
+						<td><a href="#">Василий пупкин</a></td>
+						<td>12</td>
+						<td>34</td>
+						<td>546</td>
+						<td>45747</td>
+						<td>456</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="pagination">
+				<ul>
+					<li class="disabled"><a href="#">«</a></li>
+					<li class="active"><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">»</a></li>
+				</ul>
+			</div>
+		</fieldset>
+	</form>
+	<form action="#" style="display: none;" id="activy-user">
+		<fieldset>
+			<header class="page-header clearfix">
+				<h2>Пользователи <small>123</small></h2>
+				<select class="filter">
+					<option>Онлайн</option>
+					<option>за 10 минут</option>
+					<option>за 1 час</option>
+					<option>за 12 часов</option>
+					<option>за сутки</option>
+				</select>
+			</header>
+			<ol>
+				<li><a href="#">Василий</a> 12 декабря, 18:44</li>
+			</ol>
+		</fieldset>
+	</form>
+	<form action="#" style="display: none;" id="counters">
+		<fieldset>
+			<header class="page-header">
+				<h2>Счетчики</h2>
+			</header>
+			<table class="table">
+				<colgroup>
+					<col class="span2">
+					<col class="span6">
+				</colgroup>
+				<tbody>
+					<tr>
+						<td><b>Группы</b></td>
+						<td>123</td>
+					</tr>
+					<tr>
+						<td><b>Активные группы</b></td>
+						<td>123</td>
+					</tr>
+					<tr>
+						<td><b>Пользователи</b></td>
+						<td>123</td>
+					</tr>
+					<tr>
+						<td><b>Активные пользователи</b></td>
+						<td>123</td>
+					</tr>
+					<tr>
+						<td><b>ДЗ</b></td>
+						<td>123</td>
+					</tr>
+					<tr>
+						<td><b>Конспекты</b></td>
+						<td>123</td>
+					</tr>
+					<tr>
+						<td><b>События</b></td>
+						<td>123</td>
+					</tr>
+					<tr>
+						<td><b>Записи в блоге</b></td>
+						<td>123</td>
+					</tr>
+					<tr>
+						<td><b>Комментарии</b></td>
+						<td>123</td>
+					</tr>
+					<tr>
+						<td><b>Личные сообщения</b></td>
+						<td>123</td>
+					</tr>
+					<tr>
+						<td><b>Сообщения в чате</b></td>
+						<td>123</td>
+					</tr>
+				</tbody>
+			</table>
+		</fieldset>
+	</form>
+	<div style="display: block;" id="manage-user">
+		<header class="page-header">
+			<h2>Управление пользователями</h2>
+		</header>
+		<form action="#" class="user-search">
+			<fieldset>
+				<dl>
+					<dt><label for="search_id">Введите id пользователя</label></dt>
+					<dd><input type="text" class="span2" id="search_id"></dd>
+					<dt><label for="email">Введите email</label></dt>
+					<dd><input type="text" class="span2" id="email"></dd>
+				</dl>
+				<button class="btn btn-success">найти</button>
+			</fieldset>
+		</form>
+		<form class="manage-user">
+			<fieldset>
+				<dl>
+					<dt>Имя:</dt>
+					<dd><input type="text" class="span4"></dd>
+				</dl>
+				<dl>
+					<dt>Фамилия:</dt>
+					<dd><input type="text" class="span4"></dd>
+				</dl>
+				<dl>
+					<dt>Email:</dt>
+					<dd><input type="email" class="span4"></dd>
+				</dl>
+				<dl>
+					<dt>Email активирован:</dt>
+					<dd><input type="checkbox"></dd>
+				</dl>
+				<dl>
+					<dt>информация заполнена:</dt>
+					<dd><input type="checkbox"></dd>
+				</dl>
+				<dl>
+					<dt>Пароль:</dt>
+					<dd><input type="text" class="span4"></dd>
+				</dl>
+				<button class="btn btn-success">сохранить</button>
+				<button class="btn btn-danger">удалить</button>
+			</fieldset>
+		</form>
+	</div>
+</div>
+</body>
+</html>

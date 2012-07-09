@@ -1,0 +1,46 @@
+{% set title = 'Редактирование пользователя ' ~ user.fullname %}
+
+{% extends 'InstudiesAdminBundle:Shared:base.html.twig' %}
+
+{% block content %}
+
+	<div id="manage-user">
+
+		<header class="page-header">
+			<h2>{{ title }}</h2>
+		</header>
+
+		<form class="manage-user">
+			<fieldset>
+				<dl>
+					<dt>Имя:</dt>
+					<dd><input type="text" class="span4"></dd>
+				</dl>
+				<dl>
+					<dt>Фамилия:</dt>
+					<dd><input type="text" class="span4"></dd>
+				</dl>
+				<dl>
+					<dt>Email:</dt>
+					<dd><input type="email" class="span4"></dd>
+				</dl>
+				<dl>
+					<dt>Email активирован:</dt>
+					<dd><input type="checkbox"></dd>
+				</dl>
+				<dl>
+					<dt>информация заполнена:</dt>
+					<dd><input type="checkbox"></dd>
+				</dl>
+				<dl>
+					<dt>Пароль:</dt>
+					<dd><input type="text" class="span4"></dd>
+				</dl>
+				<button class="btn btn-success">сохранить</button>
+				<button class="btn btn-danger">удалить</button>
+			</fieldset>
+		</form>
+
+	</div>
+
+{% endblock %}

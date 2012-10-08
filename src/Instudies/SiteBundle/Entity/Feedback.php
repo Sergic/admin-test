@@ -12,7 +12,7 @@ use
 /**
  * Instudies\SiteBundle\Entity\Feedback
  *
- * @ORM\Table(name="Feedback")
+ * @ORM\Table(name="feedback")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Instudies\SiteBundle\Entity\FeedbackRepository")
  */

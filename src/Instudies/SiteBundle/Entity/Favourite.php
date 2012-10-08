@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Instudies\SiteBundle\Entity\Favourite
  *
- * @ORM\Table(name="Favourite")
+ * @ORM\Table(name="favourite")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Instudies\SiteBundle\Entity\FavouriteRepository")
  */

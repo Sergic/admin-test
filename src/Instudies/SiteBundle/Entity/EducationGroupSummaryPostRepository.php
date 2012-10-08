@@ -554,4 +554,20 @@ class EducationGroupSummaryPostRepository extends EntityRepository
 
 	}
 
+    public function totalUndeletedSummary()
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->add('select', $qb->expr()->count('summary.id').'  as count_summary');
+        $qb->from('InstudiesSiteBundle:EducationGroupSummaryPost', 'summary');
+        $qb->leftJoin('summary.user', 'user');
+        $qb->where($qb->expr()->eq('summary.deleted', '0'));
+        $qb->groupBy('user.id');
+        $q = $qb->getQuery();
+        $result = $q->getScalarResult();
+        $count = 0;
+        foreach($result as $v){
+            $count = $count + $v['count_summary'];
+        }
+        return $count;
+    }
 }

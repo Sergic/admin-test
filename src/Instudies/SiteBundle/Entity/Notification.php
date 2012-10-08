@@ -12,7 +12,7 @@ use
 /**
  * Instudies\SiteBundle\Entity\Notification
  *
- * @ORM\Table(name="Notification")
+ * @ORM\Table(name="notification")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Instudies\SiteBundle\Entity\NotificationRepository")
  */

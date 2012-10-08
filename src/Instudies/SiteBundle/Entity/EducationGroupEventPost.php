@@ -12,7 +12,7 @@ use
 /**
  * Instudies\SiteBundle\Entity\EducationGroupEventPost
  *
- * @ORM\Table(name="EducationGroupEventPost")
+ * @ORM\Table(name="educationgroupeventpost")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Instudies\SiteBundle\Entity\EducationGroupEventPostRepository")
  */

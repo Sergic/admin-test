@@ -12,7 +12,7 @@ use
 /**
  * Instudies\SiteBundle\Entity\Attachment
  *
- * @ORM\Table(name="Attachment")
+ * @ORM\Table(name="attachment")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Instudies\SiteBundle\Entity\AttachmentRepository")
  */

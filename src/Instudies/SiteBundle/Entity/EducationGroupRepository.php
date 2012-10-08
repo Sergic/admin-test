@@ -278,4 +278,44 @@ class EducationGroupRepository extends EntityRepository
             ->getOneOrNullResult();
     }
 
+    public function countAllGroups(){
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->add('select', $qb->expr()->count('educationGroup.id').'  as count_group');
+        $qb->from("InstudiesSiteBundle:EducationGroup", "educationGroup");
+        $qb->where($qb->expr()->eq('educationGroup.deleted', '0'));
+        $q = $qb->getQuery();
+        return $q->getSingleScalarResult();
+    }
+
+    public function totalActiveGroups(){
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('userEducationGroup.id');
+        $qb->addSelect('educationGroup.id');
+        $qb->addSelect($qb->expr()->count('user.id').' as count_user');
+        $qb->from("InstudiesSiteBundle:UserEducationGroup", 'userEducationGroup');
+        $qb->leftJoin('userEducationGroup.user', 'user');
+        $qb->innerJoin('userEducationGroup.educationGroup', 'educationGroup');
+        $qb->having($qb->expr()->gte('count_user', '4'));
+        $qb->groupBy('educationGroup.id');
+        $q = $qb->getQuery();
+        return count($q->getScalarResult());
+    }
+
+    public function getActiveGroupsIds(){
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('userEducationGroup.id');
+        $qb->addSelect('educationGroup.id as group_id');
+        $qb->addSelect($qb->expr()->count('user.id').' as count_user');
+        $qb->from("InstudiesSiteBundle:UserEducationGroup", 'userEducationGroup');
+        $qb->leftJoin('userEducationGroup.user', 'user');
+        $qb->innerJoin('userEducationGroup.educationGroup', 'educationGroup');
+        $qb->having($qb->expr()->gte('count_user', '4'));
+        $qb->groupBy('educationGroup.id');
+        $q = $qb->getQuery();
+        $ids = array();
+        foreach($q->getScalarResult() as $group){
+            $ids[] = $group['group_id'];
+        }
+        return $ids;
+    }
 }

@@ -13,7 +13,7 @@ use
 /**
  * InstudiesSiteBundle\Entity\User
  *
- * @ORM\Table(name="User")
+ * @ORM\Table(name="user")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Instudies\SiteBundle\Entity\UserRepository")
  * @DoctrineAssert\UniqueEntity(fields="email", message="User with such email has been allready registered")
@@ -34,7 +34,10 @@ class User  extends BaseTimestampableDeletableEntity implements UserInterface
 
     /**
      * @var string $email
-     *
+     * @Assert\Email(
+     *     message = "Введен неверный email.",
+     *     checkMX = false
+     * )
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
     protected $email;
@@ -567,6 +570,13 @@ class User  extends BaseTimestampableDeletableEntity implements UserInterface
     protected $notifiedUnactiveGroupCreatorSecondTime;
 
     public $inMyFavorites;
+
+    /**
+     * Plain password. Used for model validation. Must not be persisted.
+     *
+     * @var string
+     */
+    protected $plainPassword;
 
     /**********************************************************************************
      * CONSTRUCT
@@ -2363,5 +2373,26 @@ class User  extends BaseTimestampableDeletableEntity implements UserInterface
     public function getRegistrationReferrer()
     {
         return $this->registrationReferrer;
+    }
+
+    /**
+     * Gets the plain password.
+     *
+     * @return string
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * Sets the plain password.
+     *
+     * @param string $password
+     * @return User
+     */
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
     }
 }

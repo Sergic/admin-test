@@ -393,4 +393,16 @@ class MessageRepository extends EntityRepository
 
 	}
 
+    public function totalUndeletedMessages()
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->add('select', $qb->expr()->count('message.id').'  as count_message');
+        $qb->from('InstudiesSiteBundle:Message', 'message');
+        $qb->where($qb->expr()->orX(
+            $qb->expr()->eq('message.deletedBySender', '0'),
+            $qb->expr()->eq('message.deletedByReciever', '0')
+        ));
+        $q = $qb->getQuery();
+        return $q->getSingleScalarResult();
+    }
 }

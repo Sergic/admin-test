@@ -12,7 +12,7 @@ use
 /**
  * Instudies\SiteBundle\Entity\Comment
  *
- * @ORM\Table(name="Comment")
+ * @ORM\Table(name="comment")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Instudies\SiteBundle\Entity\CommentRepository")
  */

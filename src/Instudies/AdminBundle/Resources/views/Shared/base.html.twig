@@ -15,33 +15,11 @@
 	<![endif]-->
 </head>
 <body>
-
-	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-				<ul class="nav">
-					<li><a href="#">Статистика</a></li>
-					<li class="active"><a href="#">Управление</a></li>
-				</ul>
-				<a class="brand" href="">instudies</a>
-			</div>
-		</div>
-	</div>
-
-	<div class="subnav subnav-fixed">
-		{#
-			<ul class="nav nav-pills statistics">
-				<li><a href="#">Активность пользователей</a></li>
-				<li><a href="#">Активность групп</a></li>
-				<li><a href="#">Активные пользователи</a></li>
-				<li><a href="#">Счетчики</a></li>
-			</ul>
-		#}
-		<ul class="nav nav-pills admin">
-			<li class="active"><a href="{{ path('admin_management_user') }}">Удаление пользователями</a></li>
-		</ul>
-	</div>
-
+{% if menu_active is defined %}
+    {% render "InstudiesAdminBundle:Index:menu" with {'menu_active': menu_active}%}
+{% else %}
+    {% render "InstudiesAdminBundle:Index:menu" %}
+{% endif %}
 	<div class="container">
 
 		{% block content %}{% endblock %}

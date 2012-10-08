@@ -12,7 +12,7 @@ use
 /**
  * Instudies\SiteBundle\Entity\Invitation
  *
- * @ORM\Table(name="Invitation")
+ * @ORM\Table(name="invitation")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Instudies\SiteBundle\Entity\InvitationRepository")
  * @DoctrineAssert\UniqueEntity(fields="code")

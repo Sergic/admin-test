@@ -5,7 +5,8 @@ namespace Instudies\SiteBundle\Entity;
 use
     Doctrine\ORM\EntityRepository,
     Symfony\Component\Security\Core\User\UserProviderInterface,
-    Symfony\Component\Security\Core\User\UserInterface
+    Symfony\Component\Security\Core\User\UserInterface,
+    Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface
 ;
 
 /**
@@ -26,6 +27,40 @@ class UserRepository extends EntityRepository implements UserProviderInterface
 			->getSingleScalarResult();
 
 	}
+
+    public function totalUndeletedUsers()
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->add('select', $qb->expr()->count('user.id').'  as count_user');
+        $qb->from("InstudiesSiteBundle:User", "user");
+        $qb->where($qb->expr()->eq('user.deleted', '0'));
+        $q = $qb->getQuery();
+        return $q->getSingleScalarResult();
+    }
+
+    public function totalActiveUsers(array $active_groups_ids)
+    {
+        $date = new \DateTime();
+        $date->sub(new \DateInterval('P2M'));
+
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->add('select', $qb->expr()->count('user.id').'  as count_user');
+        $qb->from("InstudiesSiteBundle:User", "user");
+        $qb->leftJoin('user.groups', 'userEducationGroup');
+        $qb->innerJoin('userEducationGroup.educationGroup', 'educationGroup');
+        $qb->where(
+            $qb->expr()->andX(
+                $qb->expr()->eq('user.deleted', '0'),
+                $qb->expr()->eq('user.emailActivated', '1'),
+                $qb->expr()->eq('user.filledAllInformation', '1'),
+                $qb->expr()->gt('user.lastVisit', ':date'),
+                $qb->expr()->in('educationGroup.id', $active_groups_ids)
+            )
+        );
+        $qb->setParameter('date', $date);
+        $q = $qb->getQuery();
+        return $q->getSingleScalarResult();
+    }
 
 	public function user($user)
 	{
@@ -370,4 +405,27 @@ class UserRepository extends EntityRepository implements UserProviderInterface
 						->getResult();
     }
 
+    public function updatePassword(User $user, EncoderFactoryInterface $encoderFactory)
+    {
+        if (0 !== strlen($password = $user->getPlainPassword())) {
+            if (!$user->getSalt()){
+                $user->setSalt(base_convert(sha1(uniqid(mt_rand(), true)), 16, 36));
+            }
+            $encoder = $encoderFactory->getEncoder($user);
+            $user->setPassword($encoder->encodePassword($password, $user->getSalt()));
+        }
+    }
+
+    public function save(User $user)
+    {
+        $this->getEntityManager()->persist($user);
+        $this->getEntityManager()->flush();
+
+        return $user;
+    }
+
+    public function delete(User $user){
+        $this->getEntityManager()->remove($user);
+        $this->getEntityManager()->flush();
+    }
 }

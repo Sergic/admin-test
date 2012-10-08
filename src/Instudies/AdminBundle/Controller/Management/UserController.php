@@ -10,7 +10,8 @@ use
 ;
 
 use
-	Instudies\AdminBundle\Form\Management\User\Find\ManagementUserFindType
+	Instudies\AdminBundle\Form\Management\User\Find\ManagementUserFindType,
+    Instudies\AdminBundle\Form\Management\User\Edit\ManagementUserEditType
 ;
 
 /**
@@ -38,7 +39,8 @@ class UserController extends Controller
         }
 
     	return array(
-    			'findForm' => $findForm->createView()
+    			'findForm' => $findForm->createView(),
+                'menu_active' => array(2 => array(1 => 1)),
     		);
 
     }
@@ -52,19 +54,55 @@ class UserController extends Controller
     {
 
         $userRepository = $this->getDoctrine()->getEntityManager()->getRepository('InstudiesSiteBundle:User');
+        /**
+         * @var \Instudies\SiteBundle\Entity\UserRepository $userRepository
+         */
 
         if ($id) {
             $user = $userRepository->findOneById(intval($id));
         } elseif ($email) {
-            $user = $userRepository->findOneByEmail(intval($email));
+            $user = $userRepository->findOneByEmail($email);
         }
 
         if (!$user instanceof \Instudies\SiteBundle\Entity\User) {
             throw $this->createNotFoundException('Такого пользователя не существует');
         }
-
+        if ($id){
+            $form_action = 'id';
+        }
+        else{
+            $form_action = 'email';
+        }
+        $editForm = $this->createForm(new ManagementUserEditType(), $user);
+        if ($request->getMethod() == 'POST'){
+            if ($request->get('delete_button')){
+                $userRepository->delete($user);
+                $this->get('session')->setFlash('notice_flash_success', 'User '.$user->getEmail().' has been deleted.');
+                return $this->redirect($this->generateUrl('admin_management_user'));
+            }
+            else{
+                $editForm->bindRequest($request);
+                if ($editForm->isValid()) {
+                    $user = $editForm->getData();
+                    /**
+                     * @var \Instudies\SiteBundle\Entity\User $user
+                     */
+                    if ($user->getPlainPassword()){
+                        $userRepository->updatePassword($user, $this->get('security.encoder_factory'));
+                    }
+                    $userRepository->save($user);
+                    $this->get('session')->setFlash('notice_flash_success', 1);
+                }
+                else{
+                    $this->get('session')->setFlash('notice_flash_error', 1);
+                }
+            }
+        }
         return array(
-                'user' => $user
+                'user' => $user,
+                'form_action' => $form_action,
+                'edit_form' => $editForm->createView(),
+                'menu_active' => array(2 => array(1 => 1)),
             );
 
     }

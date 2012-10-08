@@ -696,4 +696,20 @@ class EducationGroupBlogPostRepository extends EntityRepository
 
 	}
 
+    public function totalUndeletedBlogs()
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->add('select', $qb->expr()->count('blog.id').'  as count_blog');
+        $qb->from('InstudiesSiteBundle:EducationGroupBlogPost', 'blog');
+        $qb->leftJoin('blog.user', 'user');
+        $qb->where($qb->expr()->eq('blog.deleted', '0'));
+        $qb->groupBy('user.id');
+        $q = $qb->getQuery();
+        $result = $q->getScalarResult();
+        $count = 0;
+        foreach($result as $v){
+            $count = $count + $v['count_blog'];
+        }
+        return $count;
+    }
 }

@@ -10,7 +10,11 @@
 			<h2>{{ title }}</h2>
 		</header>
 
-
+        {% if app.session.hasFlash('notice_flash_success') %}
+        <div class="alert alert-success">
+            {{app.session.getFlash('notice_flash_success')}}
+        </div>
+        {% endif %}
 	    <form action="{{ path('admin_management_user') }}" class="well" method="post" {{ form_enctype(findForm) }} class="user-search">
 			<fieldset>
 	        {{ form_widget(findForm) }}

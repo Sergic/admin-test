@@ -12,7 +12,7 @@ use
 /**
  * Instudies\SiteBundle\Entity\Activity
  *
- * @ORM\Table(name="Activity")
+ * @ORM\Table(name="activity")
  * @ORM\Entity(repositoryClass="Instudies\SiteBundle\Entity\ActivityRepository")
  */
 class Activity extends BaseTimestampableIdableEntity

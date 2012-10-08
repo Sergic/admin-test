@@ -796,4 +796,20 @@ class EducationGroupEventPostRepository extends EntityRepository
 
 	}
 
+    public function totalUndeletedEvents()
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->add('select', $qb->expr()->count('event.id').'  as count_event');
+        $qb->from('InstudiesSiteBundle:EducationGroupEventPost', 'event');
+        $qb->leftJoin('event.user', 'user');
+        $qb->where($qb->expr()->eq('event.deleted', '0'));
+        $qb->groupBy('user.id');
+        $q = $qb->getQuery();
+        $result = $q->getScalarResult();
+        $count = 0;
+        foreach($result as $v){
+            $count = $count + $v['count_event'];
+        }
+        return $count;
+    }
 }

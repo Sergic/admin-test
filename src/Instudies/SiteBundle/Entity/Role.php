@@ -12,7 +12,7 @@ use
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="Role")
+ * @ORM\Table(name="role")
  * @ORM\HasLifecycleCallbacks()
  */
 class Role extends BaseTimestampableIdableEntity implements RoleInterface

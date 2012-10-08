@@ -635,4 +635,20 @@ class EducationGroupHomeworkPostRepository extends EntityRepository
 
 	}
 
+    public function totalUndeletedHomeworks()
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->add('select', $qb->expr()->count('homework.id').'  as count_homework');
+        $qb->from('InstudiesSiteBundle:EducationGroupHomeworkPost', 'homework');
+        $qb->leftJoin('homework.user', 'user');
+        $qb->where($qb->expr()->eq('homework.deleted', '0'));
+        $qb->groupBy('user.id');
+        $q = $qb->getQuery();
+        $result = $q->getScalarResult();
+        $count = 0;
+        foreach($result as $v){
+            $count = $count + $v['count_homework'];
+        }
+        return $count;
+    }
 }

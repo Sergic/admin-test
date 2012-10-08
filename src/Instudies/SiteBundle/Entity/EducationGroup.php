@@ -12,7 +12,7 @@ use
 /**
  * Instudies\SiteBundle\Entity\EducationGroup
  *
- * @ORM\Table(name="EducationGroup")
+ * @ORM\Table(name="educationgroup")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Instudies\SiteBundle\Entity\EducationGroupRepository")
  * @DoctrineAssert\UniqueEntity(fields="slug", message="Group slug should be unique")

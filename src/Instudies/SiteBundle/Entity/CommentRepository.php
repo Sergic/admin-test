@@ -242,4 +242,20 @@ class CommentRepository extends EntityRepository
 
 	}
 
+    public function totalUndeletedComments()
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->add('select', $qb->expr()->count('comment.id').'  as count_comment');
+        $qb->from('InstudiesSiteBundle:Comment', 'comment');
+        $qb->leftJoin('comment.user', 'user');
+        $qb->where($qb->expr()->eq('comment.deleted', '0'));
+        $qb->groupBy('user.id');
+        $q = $qb->getQuery();
+        $result = $q->getScalarResult();
+        $count = 0;
+        foreach($result as $v){
+            $count = $count + $v['count_comment'];
+        }
+        return $count;
+    }
 }

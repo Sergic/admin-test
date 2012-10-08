@@ -1,0 +1,63 @@
+{% set title = 'Счетчики' %}
+
+{% extends 'InstudiesAdminBundle:Shared:base.html.twig' %}
+
+{% block content %}
+
+<form id="counters" style="" action="#">
+    <fieldset>
+        <header class="page-header">
+            <h2>Счетчики</h2>
+        </header>
+        <table class="table">
+            <colgroup>
+                <col class="span2">
+                <col class="span6">
+            </colgroup>
+            <tbody>
+            <tr>
+                <td><b>Группы</b></td>
+                <td>{{count_groups}}</td>
+            </tr>
+            <tr>
+                <td><b>Активные группы</b></td>
+                <td>{{total_active_groups}}</td>
+            </tr>
+            <tr>
+                <td><b>Пользователи</b></td>
+                <td>{{count_total_users}}</td>
+            </tr>
+            <tr>
+                <td><b>Активные пользователи</b></td>
+                <td>{{total_active_users}}</td>
+            </tr>
+            <tr>
+                <td><b>ДЗ</b></td>
+                <td>{{count_homeworks}}</td>
+            </tr>
+            <tr>
+                <td><b>Конспекты</b></td>
+                <td>{{count_summary}}</td>
+            </tr>
+            <tr>
+                <td><b>События</b></td>
+                <td>{{count_events}}</td>
+            </tr>
+            <tr>
+                <td><b>Записи в блоге</b></td>
+                <td>{{count_blogs}}</td>
+            </tr>
+            <tr>
+                <td><b>Комментарии</b></td>
+                <td>{{count_comments}}</td>
+            </tr>
+            <tr>
+                <td><b>Личные сообщения</b></td>
+                <td>{{count_messages}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </fieldset>
+</form>
+
+{% endblock %}

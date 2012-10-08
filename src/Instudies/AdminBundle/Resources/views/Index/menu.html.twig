@@ -1,0 +1,23 @@
+{% set submenu = null %}
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <ul class="nav">
+                {% for item in menu %}
+                <li{% if item.active%} class="active"{% endif %}><a href="{% if item.url != '' %}{{path(item.url)}}{% else %}#{% endif %}">{{item.title}}</a></li>
+                {% if item.active and item.sub is defined %} {% set submenu = item.sub %} {% endif %}
+                {% endfor %}
+            </ul>
+            <a class="brand" href="">instudies</a>
+        </div>
+    </div>
+</div>
+{% if submenu %}
+<div class="subnav subnav-fixed">
+    <ul class="nav nav-pills admin">
+        {% for item in submenu %}
+        <li{% if item.active%} class="active"{% endif %}><a href="{% if item.url != '' %}{{path(item.url)}}{% else %}#{% endif %}">{{item.title}}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
